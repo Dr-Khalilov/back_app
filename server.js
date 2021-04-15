@@ -3,7 +3,7 @@ const app = require('./app');
 
 const server = http.createServer(app);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 server.listen(port, () => {
   console.log(`APP started on port ${port}`);

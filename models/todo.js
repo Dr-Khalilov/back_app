@@ -27,9 +27,6 @@ module.exports = (sequelize, DataTypes) => {
         field: 'is_done',
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-        validate: {
-          notEmpty: true,
-        },
       },
     },
     {

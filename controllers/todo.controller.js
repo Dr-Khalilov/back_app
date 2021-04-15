@@ -34,9 +34,11 @@ module.exports.updateTask = async (req, res, next) => {
     const {
       params: { id },
       body: { isDone },
+      body,
     } = req;
-    const [rowsCount, [updatedTask]] = await Todo.update(isDone, {
+    const [rowsCount, [updatedTask]] = await Todo.update(body, {
       where: { id },
+
       returning: true,
     });
     if (rowsCount === 0) {
@@ -55,7 +57,7 @@ module.exports.deleteTask = async (req, res, next) => {
     } = req;
     const rowsCount = await Todo.destroy({ where: { id } });
     if (rowsCount === 0) {
-      return next(createError(404, 'Task cannot be deleted'));
+      return next(createError(404, 'Task to be deleted'));
     }
     res.status(200).end();
   } catch (error) {

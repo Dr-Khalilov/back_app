@@ -8,7 +8,7 @@ module.exports.createTask = async (req, res, next) => {
     if (!task) {
       return next(createError(400, 'Todo cannot be create'));
     }
-    res.status(200).send({ date: task });
+    res.status(200).send({ data: task });
   } catch (error) {
     next(error);
   }
@@ -23,7 +23,7 @@ module.exports.getAllTasks = async (req, res, next) => {
     if (!tasks.length) {
       return next(createError(404, 'Tasks not founded'));
     }
-    res.status(200).send({ date: tasks });
+    res.status(200).send({ data: tasks });
   } catch (error) {
     next(error);
   }
@@ -33,7 +33,6 @@ module.exports.updateTask = async (req, res, next) => {
   try {
     const {
       params: { id },
-      body: { isDone },
       body,
     } = req;
     const [rowsCount, [updatedTask]] = await Todo.update(body, {
@@ -44,7 +43,7 @@ module.exports.updateTask = async (req, res, next) => {
     if (rowsCount === 0) {
       return next(createError(400, 'Task cannot be updated'));
     }
-    res.status(200).send({ date: updatedTask });
+    res.status(200).send({ data: updatedTask });
   } catch (error) {
     next(error);
   }
